@@ -7,4 +7,11 @@ sudo partprobe /dev/loop0 # imajı bağladıktan sonra kernel'de belirtilen dev'
 sudo gparted /dev/loop0 # gparted
 ```
 
+Rollback :
+
+```
+sudo losetup -d /dev/loop0
+sudo rmmod loop
+```
+
 https://softwarebakery.com//shrinking-images-on-linux
