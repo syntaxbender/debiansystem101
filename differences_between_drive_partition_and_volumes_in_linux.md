@@ -9,7 +9,7 @@
 > Linux represents the drives as pseudo files with the prefix sd under the /dev directory. For example, the first physical drive we attach to the system will be /dev/sda. For the subsequent physical storage drive we attach to the system, they’ll get the identifier in the form of sd{alphabet}, where alphabet is the next alphabet in line.
 
 ## Partition
-- **Logical Partition** : Partition is a logical division or subdivision of a physical storage drive.
+Partition is a logical division or subdivision of a physical storage drive. (like /dev/sda1, /dev/vda2...)
 > To manage the partitions on a storage drive, Linux stores meta-information about the partitions in a partition table. Then, the system stores the partition table as the header in the physical storage drive, commonly known as sector 0 of the drive. In Linux, the most common partitioning table formats are the Master Boot Record (MBR) and the GUID Partition Table (GPT).
 
 > Besides that, with the partitions being separate storage entities, we can also format the partitions with a different file system from one another. This means we can afford to install multiple operating systems onto the same physical storage drive by partitioning.
