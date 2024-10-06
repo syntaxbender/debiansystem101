@@ -65,4 +65,5 @@ https://www.baeldung.com/linux/drive-partition-volumes
 
 
 # Windows
-![image](https://github.com/user-attachments/assets/1e17e5ea-3c6c-4ecf-800a-5741d639a4ff)
+![image](https://github.com/user-attachments/assets/cb6bb22d-3c4e-4fce-9af6-b7ddcd21f4bb)
+
