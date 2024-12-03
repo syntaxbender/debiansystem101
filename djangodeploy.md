@@ -1,4 +1,7 @@
-add an user for better deploy
+#notes
+- gunicorn php-fpm vari bir linux soket oluşturur. django pyhton çıktıları bu soket vasıtasıyla alınır.
+- static dosyalar python'ı yani gunicorn'u bağlamıyor. statik dosyalar nginx/apache web sunucusu serve eder.
+- add an non-root user for better deploy
 
 ```sudo apt update
 sudo apt upgrade
