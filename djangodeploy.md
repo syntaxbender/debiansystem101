@@ -1,3 +1,4 @@
+
 #notes
 - gunicorn php-fpm vari bir linux soket oluşturur. django pyhton çıktıları bu soket vasıtasıyla alınır.
 - static dosyalar python'ı yani gunicorn'u bağlamıyor. statik dosyalar nginx/apache web sunucusu serve eder.
@@ -39,21 +40,7 @@ source venv/bin/activate
 pip3 install -r projectdir/requirements.txt # django ve diğer bağımlılıkları yükler
 python3 projectdir/manage.py runserver 0.0.0.0:8000 --insecure #debug false ayarlandığı için insecure ile static dosyaların serve olması sağlanır.
 python3 projectdir/manage.py collectstatic #static dosyaların hepsi settings.py'de belirtilen dizinde toplanır.
-nano /etc/nginx/sites-enabled/exampledomain.conf
-  ```
-  ```bash
-server {
-    server_name exampledomain.org;
-    listen 80 ;
-    listen [::]:80 ;
-    return 301 https://$host$request_uri;
-}
-  ```
-  ```bash
-ln -s /etc/nginx/sites-available/exampledomain.com.conf /etc/nginx/sites-enabled/exampledomain.com.conf
-service nginx restart
 certbot certonly -a nginx --agree-tos --no-eff-email --staple-ocsp --email info@exampledomain.com -d exampledomain.com,www.exampledomain.com
-rm -rf /etc/nginx/sites-enabled/exampledomain.conf
 nano /etc/nginx/sites-enabled/exampledomain.conf
   ```
 ```bash
@@ -86,6 +73,8 @@ server {
 }
 ```
 ```bash
+ln -s /etc/nginx/sites-available/exampledomain.com.conf /etc/nginx/sites-enabled/exampledomain.com.conf
+service nginx restart
 pip3 install gunicorn
 gunicorn --bind 0.0.0.0:8000 projectdir.wsgi # test amaçlı gunicorn ile bir test sunucusu başlatılır. sunucuip:8000 ile dışardan erişilebilir. static dosyalar serve edilmez. static dosyaları nginx serve edecek.
 sudo nano /etc/systemd/system/gunicorn.socket
