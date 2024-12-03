@@ -49,7 +49,7 @@ server {
   ```bash
 ln -s /etc/nginx/sites-available/exampledomain.com.conf /etc/nginx/sites-enabled/exampledomain.com.conf
 service nginx restart
-sudo certbot --nginx -d exampledomain.org -d www.exampledomain.org
+certbot certonly -a apache --agree-tos --no-eff-email --staple-ocsp --email info@exampledomain.com -d exampledomain.com,www.exampledomain.com
 rm -rf /etc/nginx/sites-enabled/exampledomain.conf
 nano /etc/nginx/sites-enabled/exampledomain.conf
   ```
