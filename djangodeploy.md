@@ -1,5 +1,8 @@
 
-#notes
+## prerequisites
+- compatible python version with project django
+- nginx
+## notes
 - gunicorn php-fpm vari bir linux soket oluşturur. django pyhton çıktıları bu soket vasıtasıyla alınır.
 - static dosyalar python'ı yani gunicorn'u bağlamıyor. statik dosyalar nginx/apache web sunucusu serve eder.
 - add an non-root user for better deploy
@@ -40,6 +43,8 @@ source venv/bin/activate
 pip3 install -r projectdir/requirements.txt # django ve diğer bağımlılıkları yükler
 python3 projectdir/manage.py runserver 0.0.0.0:8000 --insecure #debug false ayarlandığı için insecure ile static dosyaların serve olması sağlanır.
 python3 projectdir/manage.py collectstatic #static dosyaların hepsi settings.py'de belirtilen dizinde toplanır.
+cp -r projectdir/static /var/www/html
+chown -R www-data:www-data /var/www/html
 certbot certonly -a nginx --agree-tos --no-eff-email --staple-ocsp --email info@exampledomain.com -d exampledomain.com,www.exampledomain.com
 nano /etc/nginx/sites-enabled/exampledomain.conf
   ```
