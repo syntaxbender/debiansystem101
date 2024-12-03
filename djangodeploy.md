@@ -34,8 +34,8 @@ cd ..
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -r projectdir/requirements.txt # django ve diğer bağımlılıkları yükler
-python3 projectdir/manage.py runserver 0.0.0.0:8000 --insecure
-python3 projectdir/manage.py collectstatic
+python3 projectdir/manage.py runserver 0.0.0.0:8000 --insecure #debug false ayarlandığı için insecure ile static dosyaların serve olması sağlanır.
+python3 projectdir/manage.py collectstatic #static dosyaların hepsi settings.py'de belirtilen dizinde toplanır.
 nano /etc/nginx/sites-enabled/exampledomain.conf
   ```
   ```bash
@@ -84,11 +84,10 @@ server {
 ```
 ```bash
 pip3 install gunicorn
-gunicorn --bind 0.0.0.0:8000 projectdir.wsgi
+gunicorn --bind 0.0.0.0:8000 projectdir.wsgi # test amaçlı gunicorn ile bir test sunucusu başlatılır. sunucuip:8000 ile dışardan erişilebilir. static dosyalar serve edilmez. static dosyaları nginx serve edecek.
 sudo nano /etc/systemd/system/gunicorn.socket
 ```   
 ```bash
-GNU nano 6.2                                     /etc/systemd/system/gunicorn.socket                                              
 [Unit]
 Description=gunicorn socket
 
@@ -111,12 +110,12 @@ After=network.target
 [Service]
 User=root
 Group=www-data
-WorkingDirectory=/root/django/kastobform1
+WorkingDirectory=/root/projectdir/projectdir
 ExecStart=/usr/local/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
-          kastobform1.wsgi:application
+          projectdir.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
