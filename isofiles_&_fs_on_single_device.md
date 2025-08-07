@@ -27,8 +27,8 @@ sudo mount /dev/sdX1 /mnt/rpi-boot
 sudo mount /dev/sdX2 /mnt/rpi-root
 
 # safe copy files with rysync from loop device to sdcard 
-sudo rsync -aAXHv --delete /mnt/raspboot/ /mnt/rpi-boot/
-sudo rsync -aAXHv --delete /mnt/rasproot/ /mnt/rpi-root/
+sudo rsync -aAXHv --delete /mnt/img-boot/ /mnt/rpi-boot/
+sudo rsync -aAXHv --delete /mnt/img-root/ /mnt/rpi-root/
 
 # wait copy buffer until done
 sudo sync
@@ -60,9 +60,9 @@ sudo losetup -d /dev/loopX
 ```
 
 # partition resizing processes at boot or startup
-- /mnt/rasp-root/lib/raspi-config/init_resize.sh   
-- /mnt/rasproot/etc/init.d/resize2fs_once (runs at startup)
-- /mnt/rasproot/etc/rc3.d/S01resize2fs_once (runs at startup, runlevel3)
-- /mnt/rasproot/usr/share/initramfs-tools/scripts/local-premount/firstboot (runs at boot)
-- /mnt/rasproot/usr/share/initramfs-tools/hooks/firstboot (include tools to initramfs for resize partition process while booting)
+- /mnt/rpi-root/lib/raspi-config/init_resize.sh   
+- /mnt/rpi-root/etc/init.d/resize2fs_once (runs at startup)
+- /mnt/rpi-root/etc/rc3.d/S01resize2fs_once (runs at startup, runlevel3)
+- /mnt/rpi-root/usr/share/initramfs-tools/scripts/local-premount/firstboot (runs at boot)
+- /mnt/rpi-root/usr/share/initramfs-tools/hooks/firstboot (include tools to initramfs for resize partition process while booting)
 > Note: if u change a initramfs file u need to update initramfs and copy updated initramfs file to boot partition!!! 
