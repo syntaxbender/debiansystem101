@@ -65,4 +65,13 @@ sudo losetup -d /dev/loopX
 - /mnt/rpi-root/etc/rc3.d/S01resize2fs_once (runs at startup, runlevel3)
 - /mnt/rpi-root/usr/share/initramfs-tools/scripts/local-premount/firstboot (runs at boot)
 - /mnt/rpi-root/usr/share/initramfs-tools/hooks/firstboot (include tools to initramfs for resize partition process while booting)
-> Note: if u change a initramfs file u need to update initramfs and copy updated initramfs file to boot partition!!! 
+> Note: if u change a initramfs file u need to update initramfs and copy updated initramfs file to boot partition!!!
+
+
+# bonus
+```bash
+# get partition flags
+sudo parted /dev/DEVICE print
+# get device id and partition table type
+sudo blkid /dev/DEVICE
+```
