@@ -21,3 +21,22 @@ SystemKeepFree=1G
 MaxRetentionSec=15day
 Audit=yes
 ```
+
+## debug & troubleshooting
+
+```
+# Journal toplam ne kadar yer kaplıyor
+journalctl --disk-usage
+
+# toplam journalctl log boyutunu 300mb'ye sabitle. fazlalığı sil.
+sudo journalctl --vacuum-size=300M
+
+# 7 günden eski logları sil
+sudo journalctl --vacuum-time=7d
+
+# check active config
+systemd-analyze cat-config systemd/journald.conf
+
+# check service status
+systemctl status systemd-journald
+```
